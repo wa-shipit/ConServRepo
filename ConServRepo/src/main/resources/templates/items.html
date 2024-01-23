@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Controllerからの分離</title>
+</head>
+
+<body>
+	<h1>商品一覧</h1>
+	<table>
+		<th>商品ID</th>
+		<th>商品名</th>
+		<th>価格</th>
+		<th>カテゴリ</th>
+		<th>注文する？</th>
+		<tr th:each="result : ${resultList}">
+			<td th:text="${result.item_id}"></td>
+			<td th:text="${result.item_name}"></td>
+			<td th:text="${result.item_price}"></td>
+			<td th:text="${result.category}"></td>
+			<td><a th:href="@{'/items/'  + ${result.item_id} + '/' + ${result.item_price}}"><button>注文するで。拳で。</button></a></td>
+		</tr>
+	</table>
+	<hr>
+	<h1>注文履歴</h1>
+	<a th:href="@{/items/orderdel}"><button>履歴を削除する。</button></a>
+	<table>
+		<th>商品ID</th>
+		<th>購入時価格</th>
+		<tr th:each="order : ${orderList}">
+			<td th:text="${order.item_id}"></td>
+			<td th:text="${order.baika}"></td>
+		</tr>
+	</table>
+	<hr>
+	
+	<h1>カテゴリ別検索</h1>
+	<a th:href="@{/items/飲食品}">飲食品で検索</a><br>
+	<a th:href="@{/items/衣服}">衣服で検索</a><br>
+	<a th:href="@{/items/書籍}">書籍で検索</a><br>
+	
+
+</body>
+
+</html>
