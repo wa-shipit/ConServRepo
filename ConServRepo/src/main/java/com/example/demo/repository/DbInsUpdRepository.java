@@ -11,7 +11,7 @@ public class DbInsUpdRepository {
 	JdbcTemplate jdbcTemplate;
 	
 	public void insertOrder(String item_id,String price) {
-		jdbcTemplate.update("INSERT INTO spitem_order (item_id,baika) VALUES (?,?)", item_id,price);
+		//ここに練習問題②のINSERT文を書いてね。
 	}
 	
 }
