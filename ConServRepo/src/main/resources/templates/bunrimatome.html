@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bunri Matome</title>
+</head>
+<body>
+
+<h2>商品リスト</h2>
+<table>
+    <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>価格</th>
+    </tr>
+    <tr th:each="item : ${resultList}">
+        <td th:text="${item.item_id}"></td>
+        <td th:text="${item.item_name}"></td>
+        <td th:text="${item.item_price}"></td>
+    </tr>
+</table>
+<h2>注文履歴</h2>
+<table>
+    <tr>
+        <th>商品ID</th>
+        <th>注文時売価</th>
+    </tr>
+    <tr th:each="order : ${orderResult}">
+        <td th:text="${order.item_id}"></td>
+        <td th:text="${order.baika}"></td>
+    </tr>
+</table>
+
+<h2>商品の登録</h2>
+<h3>削除にチェックを入れて送信すると、入力内容に関わらず注文履歴が削除されます。</h3>
+<form th:action="@{/bunrimatome}" method="post">
+    <input type="text" name="item_id" placeholder="商品ID" />
+    <input type="text" name="price" placeholder="価格" />
+       <input type="radio" name="mode" value="delete"> 履歴の削除
+    <input type="submit" value="送信" />
+</form>
+
+
+</body>
+</html>
