@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<title>社員を管理する。</title>
+</head>
+
+<body>
+	<di class="row">
+		<div class="col-6">
+			<h3>社員一覧</h3>
+			<table class="table">
+				<th>社員番号(ID)</th>
+				<th>社員名</th>
+				<th>メールアドレス</th>
+				<tr th:each="result : ${resultList}">
+					<td th:text="${result.id}"></td>
+					<td th:text="${result.name}"></td>
+					<td th:text="${result.email}"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-3">
+			<h3>社員登録・更新</h3>
+			<!-- ID、名前、メールアドレスを入力する-->
+			<form method="post" th:action="@{/syain/add}">
+				社員番号:<input type="number" name="id"><br>
+				社員名：<input type="text" name="name"><br>
+				EMAIL：<input type="text" name="email"><br>
+				<input type="submit" value="登録">
+			</form>
+		</div>
+		<div class="col-3">
+			<h3>社員削除</h3>
+			<form method="post" th:action="@{/syain/del}">
+				対象社員ID:<input type="number" name="id"><br>
+				<input type="submit" value="削除">
+			</form>
+			
+			<hr>
+			
+			<h1>社員テーブル爆破ボタン</h1>
+			<a th:href="@{/syain/deleteall}"><button>全部消す。</button></a>
+		</div>
+	</div>
+</body>
+
+</html>
