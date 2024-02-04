@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<title>会社を管理する。</title>
+</head>
+
+<body>
+	<di class="row">
+		<div class="col-6">
+			<h3>会社一覧</h3>
+			<table class="table">
+				<th>会社ID</th>
+				<th>会社名</th>
+				<th>従業員数</th>
+				<th>代表者名</th>
+				<tr th:each="result : ${resultList}">
+					<td th:text="${result.compid}"></td>
+					<td th:text="${result.compname}"></td>
+					<td th:text="${result.compmember}"></td>
+					<td th:text="${result.compboss}"></td>
+				</tr>
+			</table>
+			
+			<hr>
+			<h2>会社検索</h2>
+			<form method="post" th:action="@{/company/search}">
+                会社名:<input type="text" name="compname">
+                <input type="submit" value="検索">
+            </form>
+            <hr>
+            <h2>応用問題</h2>
+            <h4>会社名と代表者名のOR検索を出来るようにしてね。</h4>
+            			<form method="post" th:action="@{/company/search/ouyou}">
+                会社名:<input type="text" name="compname">
+                代表者名:<input type="text" name="compboss">
+                <input type="submit" value="検索">
+            </form>
+		</div>
+		<div class="col-3">
+			<h3>会社登録・更新</h3>
+			<!-- ID、名前、メールアドレスを入力する-->
+			<form method="post" th:action="@{/company/add}">
+				会社番号:<input type="number" name="compid"><br>
+				会社名：<input type="text" name="compname"><br>
+				従業員数：<input type="number" name="compmember"><br>
+				代表者名：<input type="text" name="compboss"><br>
+				<input type="submit" value="登録">
+			</form>
+		</div>
+		<div class="col-3">
+			<h3>会社削除</h3>
+			<form method="post" th:action="@{/company/delete}">
+				対象会社ID:<input type="number" name="id"><br>
+				<input type="submit" value="削除">
+			</form>
+			
+		</div>
+	</div>
+</body>
+
+</html>
