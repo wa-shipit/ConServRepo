@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS springdb.syain (
 );
 
 CREATE TABLE IF NOT EXISTS springdb.company (
-  `compid` int(11) NOT NULL,
+  `compid` int(11)  PRIMARY KEY,
   `compname` varchar(255) NOT NULL,
   `compmember` int(11) NOT NULL,
   `compboss` varchar(255) NOT NULL
