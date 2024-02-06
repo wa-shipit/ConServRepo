@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<title>商品を管理する。</title>
+</head>
+
+<body>
+	<di class="row">
+		<div class="col-6">
+			<h3>商品一覧</h3>
+			<table class="table">
+				<th>商品ID</th>
+				<th>商品名</th>
+				<th>商品売価</th>
+				<th>商品原価</th>
+				<tr th:each="result : ${resultList}">
+					<td th:text="${result.itemid}"></td>
+					<td th:text="${result.itemname}"></td>
+					<td th:text="${result.itembaika}"></td>
+					<td th:text="${result.itemgenka}"></td>
+				</tr>
+			</table>
+			
+			<hr>
+			<h2>商品検索</h2>
+			<form method="post" th:action="@{/ormitem/search}">
+                商品名:<input type="text" name="itemname">
+                <input type="submit" value="検索">
+            </form>
+            <hr>
+            <h2>応用問題</h2>
+            <h4>価格検索</h4>
+            			<form method="post" th:action="@{/ormitem/search/ouyou}">
+                下限<input type="text" name="kagen">～
+                上限:<input type="text" name="jougen">
+                <input type="submit" value="検索">
+            </form>
+		</div>
+		<div class="col-3">
+			<h3>商品登録・更新</h3>
+			<!-- ID、名前、メールアドレスを入力する-->
+			<form method="post" th:action="@{/item/add}">
+				商品番号:<input type="number" name="itemid"><br>
+				商品名：<input type="text" name="itemname"><br>
+				商品売価：<input type="number" name="itembaika"><br>
+				商品原価：<input type="text" name="itemgenka"><br>
+				<input type="submit" value="登録">
+			</form>
+		</div>
+		<div class="col-3">
+			<h3>商品削除</h3>
+			<form method="post" th:action="@{/item/delete}">
+				対象商品ID:<input type="number" name="itemid"><br>
+				<input type="submit" value="削除">
+			</form>
+			<hr>
+			<h3>応用問題②</h3>
+			<a th:href="@{/ormitem/delAll}"><button>商品テーブル爆破</button></a>
+		</div>
+	</div>
+</body>
+
+</html>
